@@ -1,3 +1,28 @@
+# Serverpod work sample
+
+Relic is Serverpod's lower-level web server, supporting middleware. It's based on Dart Shelf but adds a type-safe interface and performance improvements. 
+
+Relic comes with some default middleware, like a basic logger. We want you to add a new middleware to track usage statistics.
+
+When implementing the new feature, follow Dart's best practices and use the same coding style as the one used in the project. Submit your work as a pull request. We intend this work sample to be as similar as possible to doing real work on Serverpod, except, of course, it's at a much smaller scale. Choose data structures that are scalable for a large number of endpoints and for handling many requests to the server.
+
+## Metrics collection
+The following metrics should be tracked on a per-endpoint basis:
+
+- Request count per endpoint.
+- Average response time (measure the time it takes to process the request).
+- Response code distribution.
+
+## Data storage
+The metrics will be stored in memory for simplicity. It's not necessary to persist the data between restarts of the server.
+
+## Analytics retrieval
+An endpoint should be added, `/stats`, that returns a JSON structure with the data. If a `path` parameter is set, the stats endpoint will return data for the specific endpoint. If no path parameter is set, aggregated data for all endpoints are returned.
+
+## Tests
+Write tests that validate the `/stats` endpoint and the middleware.
+
+
 ![Relic web server banner](https://github.com/serverpod/relic/raw/main/misc/images/github-banner.jpg)
 
 # Relic web server
