@@ -7,17 +7,19 @@ Relic comes with some default middleware, like a basic logger. We want you to ad
 When implementing the new feature, follow Dart's best practices and use the same coding style as the one used in the project. Submit your work as a pull request. We intend this work sample to be as similar as possible to doing real work on Serverpod, except, of course, it's at a much smaller scale. Choose data structures that are scalable for a large number of endpoints and for handling many requests to the server.
 
 ## Metrics collection
-The following metrics should be tracked on a per-endpoint basis:
+The following metrics should be tracked on a per-path/endpoint basis:
 
-- Request count per endpoint.
+- Request count per path/endpoint.
 - Average response time (measure the time it takes to process the request).
 - Response code distribution.
+
+Path's ending with a trailing slash should be treated the same as if the slash was not there. E.g., `/example` and `/example/` should be logged as the same endpoint.
 
 ## Data storage
 The metrics will be stored in memory for simplicity. It's not necessary to persist the data between restarts of the server.
 
 ## Analytics retrieval
-An endpoint should be added, `/stats`, that returns a JSON structure with the data. If a `path` parameter is set, the stats endpoint will return data for the specific endpoint. If no path parameter is set, aggregated data for all endpoints are returned.
+An endpoint should be added, `/stats`, that returns a JSON structure with the data. If a `path` parameter is set, the stats endpoint will return data for the specific endpoint. If no path parameter is set, aggregated data for all endpoints are returned. The aggregated data should have the same format as if a `path` is specified (i.e., it shouldn't return a list of different data points).
 
 ## Tests
 Write tests that validate the `/stats` endpoint and the middleware.
